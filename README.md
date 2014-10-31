@@ -6,7 +6,7 @@ A better filter widget for foreign key relationships that also works on mobile d
 <img src="http://i.imgur.com/jzKen5h.gif" width="542"/>
 
 # About
-Django's horizontal and vertical filter widget is ugly, confusing to new users and completely broken on mobile devices. **django-better-filter-widget** is not magic and does not do real-time lookups like **django-selectable**. It's simply a nicer UI for filtering a list of things that, most importantly, actual works on mobile devices.
+Django's [horizontal and vertical filter widget](http://i.imgur.com/RBgrm.png) is ugly, confusing to new users and completely broken on mobile devices. **django-better-filter-widget** is not magic and does not do real-time lookups like **django-selectable**. It's simply a nicer UI for filtering a list of things that, most importantly, actual works on mobile devices.
 
 
 # Installation
