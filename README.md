@@ -23,7 +23,7 @@ Add 'better_filter_widget' to INSTALLED_APPS in your settings.py
 
 **admin.py**
 
-Specify the Better Filter as your widget:
+Specify BetterFilterWidget as the widget for your field:
 
 	class MyModelForm(forms.ModelForm):
 	    
