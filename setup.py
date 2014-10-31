@@ -11,5 +11,6 @@ setup(
     url='https://github.com/ExoticObjects/django-better-filter-widget',
     include_package_data=True,
     long_description=open('README.md').read(),
+    description='A better filter widget for foreign key relationships',
     packages=find_packages(),
 )
