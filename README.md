@@ -11,7 +11,7 @@ Django's horizontal and vertical filter widget is ugly, confusing to new users a
 
 # Installation
 
-Note: This project is brand spanking new as still being tested. It was developed using django 1.6. It was tested in modern desktop and mobile browsers.
+Note: This project is brand spanking new and is still being tested. It was developed using django 1.6. It was tested in modern desktop and mobile browsers.
 
 **Install with pip**
 
@@ -21,7 +21,7 @@ Note: This project is brand spanking new as still being tested. It was developed
 
 Add 'better_filter_widget' to INSTALLED_APPS in your settings.py
 
-** admin.py **
+**admin.py**
 
 Specify the Better Filter as your widget:
 
