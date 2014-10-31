@@ -1,0 +1,4 @@
+include README.md
+include LICENSE
+recursive-include better_filter_widget *
+global-exclude *pyc
