@@ -25,6 +25,10 @@ Add 'better_filter_widget' to INSTALLED_APPS in your settings.py
 
 Specify BetterFilterWidget as the widget for your field:
 
+	from django import forms
+	from django.contrib import admin
+	from better_filter_widget import BetterFilterWidget
+
 	class MyModelForm(forms.ModelForm):
 	    
 	    class Meta(object):
