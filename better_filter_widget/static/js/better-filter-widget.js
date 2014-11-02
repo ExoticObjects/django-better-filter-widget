@@ -36,7 +36,7 @@ function BetterFilterWidget(field_name){
     }
     function toast(msg){
         // Useful for mobile where UI feedback is not great
-        bfw_wrap.find('.toast').text(msg).finish().fadeIn(100).delay(2000).fadeOut(400);
+        $('#bf-toast').html(msg).finish().fadeIn(100).delay(2000).fadeOut(400);
     }
 
     $ = django.jQuery;
@@ -45,7 +45,7 @@ function BetterFilterWidget(field_name){
     var available_items = $('<div id="available_'+field_name+'" class="item-list available-items"/>');
     var selected_items = $('<div id="selected_'+field_name+'" class="item-list selected-items"></div>');
     var filter_input = $('<input class="item-filter" type="text" placeholder="type to filter..."/>');
-
+    var item_count = 0;
     // Layout
     // Hide built-in widget stuff
     orig_input.parent().children().hide();
@@ -58,7 +58,8 @@ function BetterFilterWidget(field_name){
     bfw_wrap.append( filter_input );
     bfw_wrap.append( available_items );
     bfw_wrap.append( selected_items );
-    bfw_wrap.append( '<div id="bf-toast" class="bf-toast"/>' );
+    if ($('.bf-toast').length===0)
+        $('body').append( '<div id="bf-toast" class="bf-toast"/>' );
     
     // Recreate available list
     orig_input.find('option').each(function(i, opt){
@@ -66,17 +67,39 @@ function BetterFilterWidget(field_name){
         var item = $('<div class="item item-available" data-id="'+opt.attr('value')+'"><span class="action-icon action-icon-plus">+</span>'+opt.text()+'</div>');
         if (opt.is(':selected')) item.addClass('selected');
         available_items.append(item);
+        item_count++;
     });
 
     // update filter
+    var last_filter;
+    var search_timeout;
     filter_input.keyup(function(){
         var filter = filter_input.val().toLowerCase();
-        console.log("filter:", filter);
-        available_items.find('.item').each(function(i, opt){
-            opt = $(opt);
-            var match = !opt.hasClass('selected') && opt.text().toLowerCase().indexOf( filter ) > -1;
-            opt.css('display', match ? 'block' : 'none' );
-        });
+        var sel = '.item';
+        var match_count = 0;
+        
+        if (filter==last_filter) return;
+
+        // If this filter is just more specific version of last_filter, then we can just search what's visible.
+        if (filter.indexOf(last_filter)===0) sel += ':visible';
+        last_filter = filter;
+        var items = available_items.find(sel);
+        
+        // If more than 3000 items, wait longer before searching
+        var delay = item_count > 3000 ? (filter.length==1 ? 300: 100) : 1;
+        clearTimeout(search_timeout);
+        search_timeout = setTimeout(function(){
+            // var t = window.performance.now();
+            items.each(function(i, opt){
+                opt = $(opt);
+                var match = !opt.hasClass('selected') && opt.text().toLowerCase().indexOf( filter ) > -1;
+                opt.attr('style','display:' + (match ? 'block' : 'none') );
+                match_count += match ? 1 : 0;
+                // if (items.length==i+1) console.log('filter', filter, match_count, window.performance.now()-t );
+            });
+        }, delay);
+        // ^-- first letter is most heavy search and user typically types more than 1 char before stopping. 
+        // So, increasing timeout here on first search which increases its chance of getting cancelled.
     });
 
     // init

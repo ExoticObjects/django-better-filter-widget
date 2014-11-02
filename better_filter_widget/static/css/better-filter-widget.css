@@ -14,4 +14,4 @@
 .bfw .action-icon-minus { color: pink; }
 .bfw .item-list.selected-items { height: auto; overflow: visible; }
 .bfw .item-list.selected-items .item:active { background: pink; color: white; }
-.bfw .bf-toast { position: fixed; z-index:10000; top: 5%; left: 45%; text-align: center; background: rgba(0,0,0,.8); border: 1px solid #888; color: white; padding: 1em; border-radius: 3px; display: none; }
+.bf-toast { position: fixed; z-index:10000; top: 5%; left: 45%; text-align: center; background: rgba(0,0,0,.8); border: 1px solid #888; color: white; padding: 1em; border-radius: 3px; display: none; }

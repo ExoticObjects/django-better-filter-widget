@@ -1,7 +1,7 @@
 django-better-filter-widget
 ===========================
 
-A better filter widget for foreign key relationships that also works on mobile devices.
+A better filter widget for foreign key relationships that also works on mobile devices. This was initially developed as a drop-in replacement for  admin forms. It will work in a normal form but you'll have to include some css/js dependencies. I'll write about how to do that soon.
 
 <img src="http://i.imgur.com/jzKen5h.gif" width="542"/>
 
