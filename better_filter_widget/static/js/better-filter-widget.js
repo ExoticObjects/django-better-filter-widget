@@ -8,12 +8,8 @@ function BetterFilterWidget(field_name){
             selected_items.append( item );
         });
         
-        if (!window.DISABLE_FORM) {
-            available_items.find('.item').click(selectItem);
-            bfw_wrap.find('.item-selected').click(deselectItem);
-        } else {
-            filter_input.disable();
-        }
+        available_items.find('.item').click(selectItem);
+        bfw_wrap.find('.item-selected').click(deselectItem);
     }
     function deselectItem(){
         var item = $(this);
