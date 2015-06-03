@@ -1,15 +1,15 @@
 function BetterFilterWidget(field_name){
 
     function updateSelectedDisplay(){
+        // BFWTimer.start(arguments.callee.name);
         selected_items.html('');
         orig_input.find('option:selected').each(function(i, opt){
             opt = $(opt);
             var item = $('<div class="item item-selected" data-id="'+opt.attr('value')+'"><span class="action-icon action-icon-minus">-</span>'+opt.text()+'</div>');
             selected_items.append( item );
+            item.click(deselectItem);
         });
-        
-        available_items.find('.item').click(selectItem);
-        bfw_wrap.find('.item-selected').click(deselectItem);
+        // BFWTimer.report(arguments.callee.name);
     }
     function deselectItem(){
         var item = $(this);
@@ -21,20 +21,21 @@ function BetterFilterWidget(field_name){
         updateSelectedDisplay();
     }
     function selectItem(){
+        // BFWTimer.start(arguments.callee.name);
         var selected_item = $(this);
         var selected_id = selected_item.data('id');
-        selected_item.addClass('selected').hide();
+        selected_item.addClass('selected');
         // if (had_focus) filter_input.focus(); // to bring keyboard back on mobile
         // select item in the hidden input
         orig_input.find('option[value='+selected_id+']').attr('selected','selected');
         updateSelectedDisplay();
         toast('Added '+ selected_item.text());
+        // BFWTimer.report(arguments.callee.name);
     }
     function toast(msg){
         // Useful for mobile where UI feedback is not great
         $('#bf-toast').html(msg).finish().fadeIn(100).delay(2000).fadeOut(400);
     }
-
     $ = django.jQuery;
     var bfw_wrap;
     var orig_input = $('#id_'+field_name);
@@ -63,6 +64,7 @@ function BetterFilterWidget(field_name){
         var item = $('<div class="item item-available" data-id="'+opt.attr('value')+'"><span class="action-icon action-icon-plus">+</span>'+opt.text()+'</div>');
         if (opt.is(':selected')) item.addClass('selected');
         available_items.append(item);
+        item.click(selectItem);
         item_count++;
     });
 
@@ -101,3 +103,15 @@ function BetterFilterWidget(field_name){
     // init
     updateSelectedDisplay();
 }
+var BFWTimer = {
+    _start: {},
+    start: function(name){
+        BFWTimer._start[name] = BFWTimer.precise_now();
+    },
+    report: function(name){
+        console.log(name + ": " + String( (BFWTimer.precise_now()-BFWTimer._start[name])/1000 ) +' secs');
+    },
+    precise_now: function(){
+        return window.performance.now ? window.performance.now() : (new Date()).getTime();
+    }
+};
