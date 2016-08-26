@@ -36,7 +36,7 @@ function BetterFilterWidget(field_name){
         // Useful for mobile where UI feedback is not great
         $('#bf-toast').html(msg).finish().fadeIn(100).delay(2000).fadeOut(400);
     }
-    $ = django.jQuery;
+    $ = window.$ || django.jQuery;
     var bfw_wrap;
     var orig_input = $('#id_'+field_name);
     var available_items = $('<div id="available_'+field_name+'" class="item-list available-items"/>');
@@ -57,7 +57,7 @@ function BetterFilterWidget(field_name){
     bfw_wrap.append( selected_items );
     if ($('.bf-toast').length===0)
         $('body').append( '<div id="bf-toast" class="bf-toast"/>' );
-    
+
     // Recreate available list
     orig_input.find('option').each(function(i, opt){
         opt = $(opt);
@@ -75,14 +75,14 @@ function BetterFilterWidget(field_name){
         var filter = filter_input.val().toLowerCase();
         var sel = '.item';
         var match_count = 0;
-        
+
         if (filter==last_filter) return;
 
         // If this filter is just more specific version of last_filter, then we can just search what's visible.
         if (filter.indexOf(last_filter)===0) sel += ':visible';
         last_filter = filter;
         var items = available_items.find(sel);
-        
+
         // If more than 3000 items, wait longer before searching
         var delay = item_count > 3000 ? (filter.length==1 ? 300: 100) : 1;
         clearTimeout(search_timeout);
@@ -96,7 +96,7 @@ function BetterFilterWidget(field_name){
                 // if (items.length==i+1) console.log('filter', filter, match_count, window.performance.now()-t );
             });
         }, delay);
-        // ^-- first letter is most heavy search and user typically types more than 1 char before stopping. 
+        // ^-- first letter is most heavy search and user typically types more than 1 char before stopping.
         // So, increasing timeout here on first search which increases its chance of getting cancelled.
     });
 
