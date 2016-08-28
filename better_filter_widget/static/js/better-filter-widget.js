@@ -3,7 +3,7 @@ function BetterFilterWidget(field_name){
     function updateSelectedDisplay(){
         // BFWTimer.start(arguments.callee.name);
         selected_items.html('');
-        orig_input.find('option:selected').each(function(i, opt){
+        orig_input.find('option[selected]').each(function(i, opt){
             opt = $(opt);
             var item = $('<div class="item item-selected" data-id="'+opt.attr('value')+'"><span class="action-icon action-icon-minus">-</span>'+opt.text()+'</div>');
             selected_items.append( item );

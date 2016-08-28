@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-better-filter-widget',
-    version='0.4.1',
+    version='0.4.2',
     author='Exotic Objects LLC',
     author_email='git@extc.co',
     license='MIT',
