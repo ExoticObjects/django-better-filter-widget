@@ -1,10 +1,10 @@
-.bfw { font-size: 14px; float: left; }
+.bfw { font-size: 10px; float: left; }
 .bfw * { box-sizing: border-box; }
-.bfw .title { float: left; width: 220px; font-size: 1.1em; color: #888; font-weight: bold; text-transform: capitalize; }
-.bfw input.item-filter { display:block; width: 200px; font-size: 1.5em; height: 40px; padding: 0 10px; background: #eee; border-radius: 0; margin-bottom: 0; }
-.bfw .item-list { overflow: auto; float: left; width: 200px; height: 185px; font-size: 1.5em; border: 1px solid #ccc; }
+.bfw .title { float: left; width: 320px; font-size: 1.1em; color: #888; font-weight: bold; text-transform: capitalize; }
+.bfw input.item-filter { display:block; width: 300px; font-size: 1.0em; height: 40px; padding: 0 10px; background: #eee; border-radius: 0; margin-bottom: 0; }
+.bfw .item-list { overflow: auto; float: left; width: 300px; height: 185px; font-size: 1.1em; border: 1px solid #ccc; }
 .bfw .selected-items { position: relative; top: -40px; height: 225px;}
-.bfw .item-list { float: left; font-size: 1.5em; margin-right: 20px;}
+.bfw .item-list { float: left; font-size: 1.1em; margin-right: 20px;}
 .bfw .item-list .item { display: block; padding: 5px 10px; border-bottom: 1px solid #ddd; cursor: pointer; }
 .bfw .item-list .item.selected { display: none; }
 .bfw .item-list.available-items .item:active { background: lightgreen; }
