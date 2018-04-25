@@ -2,6 +2,7 @@ from django.utils.safestring import mark_safe
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django import forms
 
+
 class BetterFilterWidget(forms.SelectMultiple):
     class Media:
         extend = False
@@ -10,8 +11,8 @@ class BetterFilterWidget(forms.SelectMultiple):
         }
         js = ('js/better-filter-widget.js', )
 
-    def render(self, name, value, attrs=None, choices=()):
-        output = super(BetterFilterWidget, self).render(name, value, attrs, choices)
+    def render(self, name, value, attrs=None, renderer=None):
+        output = super(BetterFilterWidget, self).render(name, value, attrs, renderer)
         output += u'''
         	<script type="text/javascript">
 				(function($) {
